@@ -1,0 +1,41 @@
+<% # Meta information for the <head> section %>
+<% title @article.title %>
+<% meta_tag :description, @article.description %>
+<% meta_tag :keywords, @article.keywords %>
+
+<div class="project-desc">
+    <h1><%= @article.title %></h1>
+    <hr class="blue">
+    <br>
+    <p>Last updated on <%= @article.updated_at.strftime('%b %d, %Y') %></p>
+    <p>
+      <a href="#share" class="trigger-share" onclick='return anchorJump(this.href)'>share</a>
+      <a href="#disqus_thread" class="trigger-comments" onclick='return anchorJump(this.href)'>comments</a>
+    </p>
+    <% if logged_in? %>
+      <p><%= link_to 'Edit', edit_article_path(@article) %> |  
+      <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+      <%= link_to 'Add Projects', new_article_path %> | 
+      <%= link_to 'View all', articles_path %> </p>
+    <% end %>
+</div>
+
+<article class="project-content">
+  <div class="article-text">
+    <%= @article.content.html_safe %>
+    <hr class="lightgrey" id="share">
+    <div class="social-sharing">
+      Share:
+      <%= social_share_button_tag(@article.title) %>
+    </div>
+    <hr class="lightgrey">
+    <div>
+      <%= render 'layouts/disqus' %>
+    </div>
+  </div>
+</article>
+
+<div class="next">
+  <div class="one-half column">UP NEXT</div>
+  <div class="one-half column"><%= link_to @article.following.title, @article.following, id: "next" %></div>
+</div>

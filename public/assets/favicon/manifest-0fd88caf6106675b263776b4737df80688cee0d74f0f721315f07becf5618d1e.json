@@ -1,0 +1,41 @@
+{
+	"name": "Frank Etoundi",
+	"icons": [
+		{
+			"src": "/assets/favicon/android-chrome-36x36-8b9d45426a9b411923af9f97e32a34e21698b2e51de5b926fca79517e29122a5.png",
+			"sizes": "36x36",
+			"type": "image\/png",
+			"density": 0.75
+		},
+		{
+			"src": "/assets/favicon/android-chrome-48x48-a3ee7ef12021a023554b2ea5b46657e856ced33e2212565850dd37ed6f42c094.png",
+			"sizes": "48x48",
+			"type": "image\/png",
+			"density": 1
+		},
+		{
+			"src": "/assets/favicon/android-chrome-72x72-0b45311fd038ac1a71bd28d5f9655572d49f251a9c5c9c698e967f121cf11a21.png",
+			"sizes": "72x72",
+			"type": "image\/png",
+			"density": 1.5
+		},
+		{
+			"src": "/assets/favicon/android-chrome-96x96-ad14e075e173fb7153d38e1da501526377d5a746846f50adfc7b6407f52deb45.png",
+			"sizes": "96x96",
+			"type": "image\/png",
+			"density": 2
+		},
+		{
+			"src": "/assets/favicon/android-chrome-144x144-5c7807fb11275126b2b8a7d642bc944a90e4c249a9c7385d9efcb0cfa2d6ac35.png",
+			"sizes": "144x144",
+			"type": "image\/png",
+			"density": 3
+		},
+		{
+			"src": "/assets/favicon/android-chrome-192x192-ee077f54557d3cf1b9625c1f597518d5a7e76f635fdc99fe25410fca3f64d49d.png",
+			"sizes": "192x192",
+			"type": "image\/png",
+			"density": 4
+		}
+	]
+}

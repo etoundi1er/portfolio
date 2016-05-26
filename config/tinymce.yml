@@ -1,0 +1,23 @@
+menubar: 
+  - file edit insert view format table tools
+toolbar:
+  - styleselect | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent| undo redo
+  - image | link | uploadimage
+plugins:
+  - image
+  - link
+  - uploadimage
+  - table
+  - media
+  - contextmenu
+  - anchor
+  - visualblocks
+  - fullscreen
+  - lists
+  - preview
+  - advlist
+  - autolink
+  - code
+  
+height:
+  - 500

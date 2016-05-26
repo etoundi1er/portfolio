@@ -1,0 +1,103 @@
+@import 'shared';
+
+.wrapper {
+  position: relative;
+  -webkit-transform: translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+.wrapper .tooltip {
+  @include sans-serif-thin;
+  background: $base-white;
+  font-size: 16px;
+  color: $base-black;
+  display: block;
+  left: 0px;
+  opacity: 0;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  transform: translateY(0px);
+  transition: all .25s ease-out;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  .tooltip-content {
+    display: flex;
+    box-sizing: border-box;
+    overflow: auto;
+    .image {
+      width: 100%;
+      height: 200px;
+      background: image-url("frank-etoundi.jpg") center no-repeat;
+      background-size: cover;
+    }
+    .textarea {
+      padding: 0 10px;
+    }
+  }
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+// .wrapper .tooltip:before {
+//   bottom: -20px;
+//   content: " ";
+//   display: block;
+//   height: 20px;
+//   left: 0;
+//   position: absolute;
+//   width: 100%;
+// }  
+
+/* CSS Triangles - see Trevor's post */
+// .wrapper .tooltip:after {
+//   border-left: solid transparent 10px;
+//   border-right: solid transparent 10px;
+//   border-bottom: solid $base-white 10px;
+//   top: -10px;
+//   content: " ";
+//   height: 0;
+//   left: 22px;
+//   margin-left: -13px;
+//   position: absolute;
+//   width: 0;
+// }
+  
+.wrapper:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-13px);
+  position: absolute;
+  z-index: 999
+}
+
+/* IE can just show/hide with no transition */
+.lte8 .wrapper .tooltip {
+  display: none;
+}
+
+.lte8 .wrapper:hover .tooltip {
+  display: block;
+}
+
+@media (max-width: 750px) {
+  .wrapper .tooltip {
+    width: 220px;
+    .tooltip-content {
+      display: block;
+      box-sizing: border-box;
+      img {
+        float: left;
+      }
+      .textarea {
+        font-size: 100%;
+        padding: 0;
+      }
+    }
+  }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 750px) {
+  .wrapper .tooltip {
+      width: 500px;
+  }
+}

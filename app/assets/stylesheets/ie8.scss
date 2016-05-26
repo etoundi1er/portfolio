@@ -1,0 +1,89 @@
+/* IE 8 and less fixes. I don't even know why I bother doing this. 
+You should really use a better browser if you are able to see this comment */
+
+@import 'shared';
+
+
+.container {
+  padding-top: 60px;
+}
+.sidebar {
+  background: #fff;
+  display: inline;
+  position: fixed;
+  opacity: 1;
+  width: 70%;
+  right: 0;
+  top: 0;
+  height: 60px;
+  z-index: 10;
+  padding: 20px 0 0;
+  overflow: hidden;
+  ul li {
+    display: inline;
+    a {
+      color: grey;
+      &:hover {
+        color: lighten(#000, 20%);
+        padding-left: 0px;
+      }
+    }
+  }
+  
+  nav {
+    float: left;
+  }
+  
+  address {
+    float: left;
+    margin-left: 20px;
+    ul li a {
+      font-style: normal;
+    }
+  }
+  
+  .social {
+    display: none;
+  }
+}
+
+
+.nav-cards {
+  color: $base-white;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  vertical-align: bottom;
+  
+  @each $card-container in work, about, writting {
+    .#{$card-container}-box {
+      margin: 0 5% 20px 0;
+      width: 30%;
+      float: left;
+      transition: all 0.3s ease-in-out;
+      &:hover, :focus {
+        background: image-url('#{$card-container}.jpg');
+        background-size: cover;
+        background-position: center;
+        transform: translateZ(0);
+        .line-separator {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
+
+.nav-cards .writting-box {
+  margin-right: 0px;
+}
+
+.next {
+  background: rgba(118, 9, 54, 1);
+  padding: 50px 0;
+}
+
+.close-icon {
+  display: none;
+}

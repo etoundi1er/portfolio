@@ -1,0 +1,38 @@
+<div class="index-wrapper">
+    <div class="site-tagline">
+        <p><span class="wrapper"><span class="name"><span class="firstname">Frank </span>Etoundi
+                   <span class="tooltip"><%= render 'layouts/frank' %></span>
+                </span></span></p>
+        <p>A Cameroonian designer and developer based in Munich and currently doing great things at <a href="//bilendo.de" target="_blank">Bilendo</a></p>
+    </div>
+    
+    <div class="nav-cards">
+        <div class="four columns about-box">
+            <a href="/about">
+                <div class="card-content">
+                    <h2>About</h2>
+                    <div class="line-separator"></div>
+                    <p>The man, his background, principles, services and more</p>
+                </div>
+            </a>
+        </div>
+        <div class="four columns work-box">
+            <%= link_to projects_path(@projects) do %>
+                <div class="card-content">
+                    <h2>Work</h2>
+                    <div class="line-separator"></div>
+                    <p>A selection of most recent and favourite projects</p>
+                </div>
+            <% end %>
+        </div>
+        <div class="four columns writting-box">
+            <a href="/articles">
+                <div class="card-content">
+                    <h2>Writings</h2>
+                    <div class="line-separator"></div>
+                    <p>Thoughts about the industry and tales of everyday life</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

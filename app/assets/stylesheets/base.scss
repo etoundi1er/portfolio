@@ -1,0 +1,815 @@
+@import 'shared';
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* NOTE
+html is set to 62.5% so that all the REM measurements throughout Skeleton
+are based on 10px sizing. So basically 1.5rem = 15px :) */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box; }
+body {
+  @include body-font;
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  color: $base-white; 
+  	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	@include transition;
+	height: 100%;
+	overflow-x: hidden;
+/*	&:before {
+	  background: $bg-image center no-repeat;
+	  background-size: cover;
+    filter: blur(10px);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }*/
+}
+
+#bg-image {
+  background: image-url($bg-image) center no-repeat;
+	background-size: cover;
+}
+
+/* Page layouts custom shared elements */
+
+.page-wrap {
+  min-height: 100%;
+  position: relative;
+  background-size: cover;
+}
+#gradient {
+  background-color: $base-red; /* fallback for old browsers */
+  background-image: $man-of-steel;
+}
+
+#gradient-home {
+  background: rgba($base-red, 0.9); /* fallback for old browsers */
+  background: $man-of-steel-trans;
+}
+
+#articles-bg {
+  background: $base-white;
+}
+
+@media (max-width: 550px) {
+  #gradient {
+    background-color: #760936;
+  }
+  #gradient-home {
+    background-color: rgba(120, 2, 47, 0.76);
+  }
+}
+
+.content {
+  margin-top: $header-height;
+  padding: 20px ;
+  min-height: 655px;
+  box-sizing: border-box;
+  transition: .3s ease-in-out;
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transform: translate3d(0,0,0);
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .content {
+    padding: 20px 0;
+  }
+}
+
+/* Mobile size and smaller than 425px */
+
+@media (max-width: 425px) {
+  .content {
+    margin-top: $header-height / 1.25;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  @include transition;
+}
+
+.form-body {
+  background: $base-white;
+  color: $base-black;
+  padding: 20px;
+}
+
+figcaption {
+    font-size: 14px;
+}
+
+/*  Typography  
+_______________________________________*/
+
+
+h1, h2, h3, h4, h5, h6 {
+  @include sans-serif;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  @include transition;
+}
+h1 { font-size: 1.3em; line-height: 1.2; }
+h2 { font-size: 1em; line-height: 1.25; }
+h3 { font-size: 0.8em; line-height: 1.3; }
+h4 { font-size: 0.7em; line-height: 1.35; }
+h5 { font-size: 0.5em; line-height: 1.5; }
+h6 { font-size: 0.3em; line-height: 1.6; }
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.2em; }
+  h3 { font-size: 1em; }
+  h4 { font-size: 0.8em; }
+  h5 { font-size: 0.6em; }
+  h6 { font-size: 0.4em; }
+}
+
+p {
+  margin-top: 0;
+  @include transition;}
+  
+cite {
+  @include body-font;
+  font-style: italic;
+}
+
+blockquote {
+  padding-left: 20px;
+  margin-left: 20px;
+  border-left: lighten($base-blue, 30%) solid 3px;
+  font-family: Georgia, "museo-slab", serif;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  color: #1EAEDB;
+  text-decoration: none;
+  @include transition;}
+a:hover {
+  color: #0FA0CE; }
+
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  @include sans-serif;
+  font-size: 11px;
+  line-height: 35px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #555;
+  text-align: center;
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid $base-blue;
+  cursor: pointer;
+  box-sizing: border-box;
+  @include transition; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0;
+  @include transition; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: $base-white;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: $base-white;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: $base-white;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  width: 100%;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 100%;
+  min-height: 100px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0;}
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+
+/* Lists
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ul {
+  list-style: circle inside; }
+ol {
+  list-style: decimal inside; }
+ol, ul {
+  padding-left: 0;
+  margin-top: 0; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; 
+  @include transition;
+}
+li {
+  margin-bottom: 1rem;
+  list-style: none;}
+
+
+/* Code
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+code {
+  padding: .2rem .5rem;
+  margin: 0 .2rem;
+  font-size: 16px;
+  white-space: nowrap;
+  background: #F1F1F1;
+  overflow: auto;
+  }
+pre {
+  overflow: hidden;
+}
+pre > code {
+  display: block;
+  padding: 1rem 1.5rem;
+  white-space: pre; }
+
+
+/* Tables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; 
+  @include transition;
+}
+
+
+/* Misc
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+hr {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  border: 0; 
+}
+
+hr.blue {
+  margin: 0 auto;
+  padding: 0;
+  border-top: $base-blue solid 3px;
+  width: 30%;
+}
+
+hr.lightgrey {
+  border-top: lighten($base-black, 90%) solid 2px;
+  width: 100px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
+}
+
+/* Clearing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Self Clearing Goodness */
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+
+
+/* Social icons */
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.line-separator {
+  margin: 0 auto;
+  padding-bottom: 10px;
+  width: 40%;
+  border-top: rgba($base-white, 0.5) 1px solid;
+  @include transition;
+}
+/* General and shared elements end */
+
+
+/* Header Elements Starts */
+
+.site-header {
+  background-color: rgba(255, 255, 255, 1);
+  top: 0px;
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+  display: inline;
+  box-sizing: border-box;
+  z-index: 9;
+  @include transition;
+  
+  .header-wrapper {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .site-title {
+    float: left;
+    @include transition;
+    h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+    a {
+      color: $base-black;
+    }
+  }
+  .site-logo {
+    margin-right: 20px;
+    float: left;
+    height: $header-height;
+    overflow: hidden;
+    .logo {
+      width: $header-height;
+      transform: translate3d(0px, 0px, 0px);
+      @include transition;
+      &:hover, :focus {
+        transform: translate3d(0px, -$header-height, 0px);
+      }
+    }
+  }
+  .menu-toggle {
+    float: right;
+    margin: 0;
+    padding-right: 20px;
+    @include transition;
+    
+    label {
+      cursor: pointer;
+    }
+  }
+  
+  .site-title, .menu-toggle {
+    padding-top:28px;
+  }
+}
+
+/* Off canvas menu */
+
+// Open Memu Icon
+
+#nav-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0px auto;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #000000;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    &:nth-child(1) {
+      top: 0px;
+      transition: top 0.4s ease;
+    }
+    &:nth-child(2) {
+      top: 8px;
+    }
+    &:nth-child(3) {
+      top: 16px;
+      transition: top 0.4s ease;
+    }
+  }
+  &:hover, :focus {
+    span {
+      &:nth-child(1) {
+        top: 2px;
+        transition: top 0.4s ease;
+      }
+      &:nth-child(2) {
+        top: 8px;
+      }
+      &:nth-child(3) {
+        top: 14px;
+        transition: top 0.4s ease;
+      }
+    }
+  }
+}
+
+// Close menu icon
+
+.close-icon {
+  width: 3em;
+  position: absolute;
+  top: 0.63em;
+  overflow: hidden;
+  font-size: 1.1em;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  @include sans-serif-thin;
+  &:hover {
+    color: rgba($base-white, 1);
+  }
+}
+
+/* Based on tutorial by Codrops http://tympanus.net/Development/OffCanvasMenuEffects/sideslide.html */
+.menu-wrap {
+  @include sans-serif-thin;
+  background: $base-black;
+	position: fixed;
+	z-index: 1001;
+	overflow-y: auto;
+  overflow-x: hidden;
+	right: 0px;
+	top: 0px;
+	width: 300px;
+	height: 100%;
+	padding: 2.5em 1.5em 0;
+	font-size: 1.15em;
+	transform: translate3d(300px,0,0);
+	transition: transform 0.5s cubic-bezier(0.47, 0.03, 0, 1.03);
+	p, button { 
+    font-size: 27px;
+    margin-bottom: 15px;
+    color: rgba($base-white, 0.3);
+  }
+  
+  .icon-svg {
+    fill: rgba($base-white, 0.7);
+    background: $base-black;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      fill: rgba($base-white, 1);
+    }
+  }
+	
+	li a {
+      color: rgba($base-white, 0.7);
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+      &:hover, :focus {
+        color: rgba($base-white, 1);
+      }
+    }
+    
+    nav {
+    }
+    
+    .address {
+      font-style: normal;
+      ul {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .social {
+        li {
+          float : left;
+          padding-right: 10px;
+          a {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+}
+
+/* Shown menu */
+.show-menu .menu-wrap {
+	transform: translate3d(0,0,0);
+	transition: transform 0.5s cubic-bezier(0.47, 0.03, 0, 1.03);
+	right: 0;
+}
+
+@media (min-width: 1000px) {
+    .menu-wrap {
+        width: 30%;
+        transform: translate3d(100%,0,0);
+    }
+}
+
+@media (max-width: 400px) {
+    .menu-wrap {
+      width: 80%;
+      padding: 2.5em 1em 0;
+      transform: translate3d(100%,0,0);
+    }
+}
+
+/* Responsive Elements */
+
+/* Mobile size */
+@media (max-width: 425px) {
+  .site-header {
+    height: $header-height / 1.25;
+    
+    .site-logo {
+      height: $header-height / 1.25;
+      .logo {
+        width: $header-height / 1.25;
+        &:hover, :focus {
+          transform: translate3d(0px, -$header-height / 1.25, 0px);
+        }
+      }
+    }
+    
+    .site-title {
+      h1 {
+        font-size: 17px;
+      }
+    }
+    
+    .site-title, .menu-toggle {
+      padding-top: 20px;
+    }
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .site-header {
+    .menu-toggle {
+      padding-right: 0;
+    }
+  }
+}
+
+/* Header Elements End */
+
+/* Footer Elements */
+
+.footer {
+  @include sans-serif-thin;
+  font-size: 12px;
+  color: $base-black;
+  display: block;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 1%;
+  box-sizing: border-box;
+  background: $base-white;
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 1%;
+    box-sizing: border-box;
+    p {
+      float: right;
+      .copyright {
+        margin-right: 20px;
+      }
+    }
+    nav {
+      float: left;
+      ul {
+        display: block;
+        li {
+          margin-right: 10px;
+          float: left;
+          a {
+            color: $base-black;
+            &:hover, :focus {
+              color: $base-blue;
+            }
+          }
+          .icon-svg {
+            fill: $base-black;
+            &:hover, :focus {
+              fill: $base-blue;
+            }
+          }
+          .social-icon {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+@media (max-width: 550px) {
+  .footer {
+    .footer-content {
+      p {
+        width: 100%;
+        text-align: center;
+      }
+      nav {
+        width: 100%;
+        ul {
+          display: block;
+          margin: 0 auto;
+          text-align: center;
+          li {
+            display: inline-block;
+            float: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Footer Elements End */
+
+
+/* Selector overlay overrides */
+
+::selection {
+  background: $base-black;
+  color: $base-white;
+}
+
+::-moz-selection {
+  background: $base-black;
+  color: $base-white;
+}
+
+::-webkit-selection {
+  background: $base-black;
+  color: $base-white;
+}
+
+
+
+/* Notifications */
+
+.update-browser {
+  width: 100%;
+  background: orange;
+  padding: 20px;
+  margin: 0px 0px 20px;
+  p {
+    color: #760936;
+    font-weight: 500;
+  }
+  a {
+    color: darken(#760936, 20%);
+    text-decoration: underline;
+  }
+}
+

@@ -1,0 +1,24 @@
+<div class="menu-wrap">
+      <nav>
+        <ul>
+          <li> <button class="close-icon" id="close-button">✕</button></li>
+          <li><a href="/about">ABOUT</a></li>
+          <li><%= link_to 'WORK', projects_path %></li>
+          <li><a href="/articles">WRITINGS</a></li>
+        </ul>
+      </nav>
+    
+      <address class="address">
+        <p>Contact  ──</p>
+        <ul>
+            <li><%= mail_to "frank@etoundi.com", "frank@etoundi.com", bcc: "frank.etoundi@gmail.com", target: "_blank" %></li>
+            <li><a href="tel:+4915213894430">(0049) 1521 389 4430</a></li>
+        </ul>
+        <hr>
+        <ul class="social">
+            <li><a href="https://twitter.com/etoundi_1er" target="_blank" alt="Frank Etoundi on Twitter"><%= render 'layouts/twitter' %></a></li>   
+            <li><a href="https://www.linkedin.com/in/franketoundi" target="_blank" alt="Frank Etoundi on Linkedin"><%= render 'layouts/linkedin' %></a></li>   
+            <li><a href="https://www.behance.net/franketoundi" target="_blank" alt="Frank Etoundi on Behance"><%= render 'layouts/behance' %></a></li>  
+        </ul>
+      </address>
+</div> 

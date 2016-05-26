@@ -1,0 +1,28 @@
+<% if logged_in? %>
+  <div style="margin-bottom: 20px">
+    <%= link_to 'New Article', new_article_path %>
+  </div>
+<% end %>
+
+<div class="articles-list">
+  <% @articles.each do |article| %>
+  <article class="article-tile">
+    <div class="article-description">
+        <p class="published_on"><%= article.updated_at.strftime('%b %d, %Y') %></p>
+        <% if article.aside == true %>
+          <h2><%= article.title %></h2> 
+          <div class="article-excerpt"><%= article.content.html_safe %></div>
+          <p class="article-excerpt"><%= link_to 'Permalink', article %></p>
+        <% else %>
+          <h2><%= link_to article.title, article %></h2> 
+          <p class="article-excerpt"><%= article.excerpt %></p>
+          <p class="article-excerpt"><%= link_to ' ⟶ Read', article %></p>
+        <% end %>
+        <% if logged_in? %>
+          <p><%= link_to 'Edit', edit_article_path(article) %> |  
+          <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <% end %>
+    </div>
+  </article>
+  <% end %>
+</div>

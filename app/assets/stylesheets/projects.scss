@@ -1,0 +1,449 @@
+@import 'shared';
+
+/* Projects index elements */
+
+.projects-header {
+  box-sizing: border-box;
+  margin: 100px 0;
+  h2 {
+    @include body-font;
+    font-style: italic;
+    font-size: 23px;
+    width: 75%;
+    line-height: inherit;
+    margin-bottom: 10px;
+  }
+  
+  cite {
+    font-size: 16px;
+    padding: 9px 40px 0 0;
+    border-top: $base-blue 4px solid;
+  }
+  
+}
+
+.projects-list {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  .project-tile {
+    margin-bottom: 20px;
+    background: $base-white;
+    color: lighten($base-black, 10%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    &:hover, :focus {
+      color: $base-blue;
+      background: darken($base-white, 5%);
+    }
+    .thumbnail {
+      width: 100%;
+      margin: auto;
+      color: $base-white;
+      max-height: 300px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .project-content-container {
+      width: 100%;
+      padding: 20px;
+      .projects-description {
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        .thumbnail-title {
+          @include sans-serif;
+          font-size: 28px;
+          display: block;
+          width: 100%;
+          &:hover, :focus {
+            border: none;
+          }
+        }
+        .thumbnail-description {
+          @include sans-serif-thin;
+          opacity: .5;
+          font-size: 15px;
+          margin-bottom: 15px;
+          display: block;
+          width: 100%;
+        }
+        a {
+          color: inherit;
+          transition: inherit;
+          &:hover, :focus {
+            color: $base-white;
+          }
+        }
+        .button {
+          border-color: inherit;
+          max-width: 200px;
+          transition: all 0.1s ease-in-out;
+          &:hover, :focus {
+            border-color: $base-blue;
+            background: $base-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+  .projects-list {
+    .project-tile {
+      flex-direction: row;
+      margin-bottom: 0;
+      max-height: 300px;
+      overflow: hidden;
+      .thumbnail {
+        width: 50%;
+        height: 100%;
+        
+      }
+      .project-content-container {
+        width: 50%;
+        .projects-description {
+          h3 {
+            font-size: 33px;
+            margin: 0 0 5px;
+          }
+          p {
+            @include sans-serif-thin;
+            font-size: 18px;
+            font-style: italic;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  .project-tile:nth-child(odd){
+  }
+  
+  .project-tile:nth-child(even){
+    flex-direction: row-reverse;
+  }
+}
+
+/* Mobile size and smaller than 425px */
+@media (max-width: 425px) {
+  .projects-header {
+    margin: 70px 0 100px;
+    h2 {
+      width: 90%;
+    }
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .projects-header {
+    h2 {
+      font-size: 33px ;
+      width: 70%;
+    }
+  }
+}
+
+/* Projects index elements end */
+
+
+/* single projects elements */
+
+/* Project header */
+
+.project-desc {
+  background: rgba($base-black, 0.5);
+  text-align: center;
+  vertical-align: middle;
+  padding: 50px 20px;
+  margin: -20px -20px 0;
+  color: $base-white;
+  transition: 0.3s ease;
+  h1 {
+    font-size: 35px;
+    font-weight: normal;
+    text-transform: capitalize;
+  }
+  h2 {
+    @include body-font;
+    font-size: 20px;
+    margin: 2rem 0 1rem;
+  }
+  
+  p {
+    font-size: 15px;
+    opacity: .5;
+    margin-bottom: 0.5rem;
+  }
+  
+}
+
+/* Project content */
+
+.project-content {
+  display: block;
+  margin-top: 0;
+  margin-left: -20px;
+  margin-bottom: 40px;
+  margin-right: -20px;
+  padding: 0;
+  background: $base-white;
+  color: lighten($base-black, 10%);
+  .project-text {
+    
+    p, h1, h2, h3, h4, h5, h6 {
+      padding: 5px 10%;
+    }
+    p {
+      font-size: 18px;
+      line-height: 2;
+    }
+    div {
+      padding: 0;
+      margin: 0;
+      > p {
+        padding: 5px 10%;
+      }
+    }
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+  .project-content {
+    .project-text {
+      p, h1, h2, h3, h4, h5, h6 {
+        padding: 10px 15%;
+      }
+      div > p {
+        padding: 10px 15%;
+      }
+    }
+  }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+  .project-content {
+    .project-text {
+      div > p {
+        padding: 20px;
+      }
+      p, h1, h2, h3, h4, h5, h6 {
+        padding: 10px 20%;
+      }
+      p {
+        font-size: 24px;
+        line-height: 2.2;
+      }
+    }
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .project-desc {
+    padding: 70px 30px;
+    h1 {
+      font-size: 40px;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  
+  .project-content {
+    .project-text {
+      
+      p, h1, h2, h3, h4, h5, h6 {
+        padding: 15px 20%;
+      }
+    }
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .project-desc {
+    padding: 100px 50px;
+    margin: 0;
+    h1 {
+      font-size: 50px;
+    }
+    h2 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  
+  .project-content {
+    margin-left: 0;
+    margin-right: 0;
+    .project-text {
+      p, h1, h2, h3, h4, h5, h6 {
+        padding: 15px 25%;
+      }
+    }
+  }
+}
+
+/* Next Post */
+
+.next {
+  @include sans-serif;
+  color: rgba($base-white, 0.2);
+  width: 100%;
+  height: auto;
+  padding: 50px 20px;
+  background: rgba($base-black, 0.3);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  a {
+    @include sans-serif-thin;
+    color: $base-white;
+    &:hover, :focus {
+      color: rgba($base-white, 0.5);
+    }
+  }
+  #next {
+      &::after {
+        content: " ⟶"  ;
+      }
+    }
+  #previous {
+    &::before {
+      content: "⟵ "  ;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .next {
+    flex-direction: column;
+    padding: 30px 20px 40px;
+  }
+}
+
+
+// ARTICLES
+
+//INDEX PAGE
+
+.articles-list {
+  background: $base-white;
+  padding: 20px;
+  p, h1, h2, h3, h4, h5 {
+    margin-bottom: 20px;
+  }
+  img {
+    width: 100%;
+  }
+  .article-tile {
+    border-bottom: lighten($base-black, 80%) 1px solid;
+    color: lighten($base-black, 30%);
+    margin: 40px;
+    padding-bottom: 20px;
+    max-width: 600px;
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+  .published_on {
+    font-size: 15px;
+    color: lighten($base-black, 80%);
+    text-transform: uppercase;
+  }
+  .article-excerpt {
+    font-size: 75%;
+  }
+}
+
+@media (max-width: 550px) {
+  .articles-list {
+    .article-tile {
+      margin: 40px 0;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .articles-list {
+    margin: 0 -20px;
+  }
+}
+
+// SHOW PAGE
+
+.article-text {
+    padding: 10% 20% 10% 10%;
+    p {
+      padding: 10px 0;
+      font-size: 75%;
+      line-height: 2.5;
+    }
+}
+
+@media (max-width: 550px) {
+  .article-text {
+    padding: 5%;
+    p {
+      line-height: 2;
+    }
+  }
+}
+
+
+// ICONS FOR SHARE, COMMENTS, PROJECT CATEGORIES, LOCATION ETC ...
+
+@each $trigger in share, comments, location, category {
+  .trigger-#{$trigger} {
+    padding-left: 26px;
+    margin: 0 15px;
+    background: image-url('#{$trigger}.png') left no-repeat;
+    background-size: contain;
+    color: $base-white;
+    text-transform: lowercase;
+    &:hover, :focus {
+      color: $base-white;
+    }
+  }
+}
+
+@media (min-width: 750px){
+  @each $trigger in share, comments, location, category {
+    .trigger-#{$trigger} {
+      padding-left: 32px;
+    }
+  }
+}
+
+@media (min-width: 1000px){
+  @each $trigger in share, comments, location, category {
+    .trigger-#{$trigger} {
+      padding-left: 40px;
+    }
+  }
+}
+
