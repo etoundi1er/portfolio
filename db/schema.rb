@@ -59,17 +59,4 @@ ActiveRecord::Schema.define(version: 20160501173508) do
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", using: :btree
 
-  create_table "works", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.text     "content"
-    t.integer  "sort_number"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
 end
