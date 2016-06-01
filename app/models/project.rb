@@ -18,11 +18,11 @@ class Project < ActiveRecord::Base
     slug
   end 
   
-  def following
+  def next_item
     Project.where("id > ?", id).order("id ASC").first || Project.first
   end
   
-  def previous
+  def prev_item
     Project.where("id < ?", id).order("id DESC").first || Project.last
   end
   

@@ -24,11 +24,11 @@ class Article < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   end
   
-  def following
+  def next_item
     Article.where("id > ?", id).order("id ASC").first || Article.first
   end
   
-  def previous
+  def prev_item
     Article.where("id < ?", id).order("id DESC").first || Article.last
   end
 end
