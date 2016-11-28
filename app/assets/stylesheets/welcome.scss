@@ -20,19 +20,12 @@
       @include sans-serif;
       font-weight: normal;
       font-size: 200%;
-      .firstname {
-        display: none;
-      }
-      &:hover {
-        .firstname {
-          display: inline;
-        }
-      }
     }
     a {
       color: inherit;
+      border-bottom: 1px solid rgba($base-white, 0.3);
       &:hover {
-        border-bottom: 1px solid $base-white;
+        border-bottom: 2px solid $base-white;
       }
     }
   }
@@ -44,7 +37,7 @@
   box-sizing: border-box;
   margin: 40px 0 20px;
   vertical-align: middle;
-  
+
   @each $card-container in work, about, writting {
     .#{$card-container}-box {
       margin-bottom: 20px;
@@ -58,7 +51,7 @@
       }
     }
   }
-  
+
   .card-content {
     text-align: center;
     border: solid 1px rgba($base-white, 0.3);
@@ -69,7 +62,7 @@
     height: 100%;
     @include transition;
   }
-  
+
   a {
     color: $base-white;
     &:hover, :focus {
@@ -111,7 +104,7 @@
 
 /* Larger than tablet */
 @media (min-width: 750px) {
-  
+
   .site-tagline {
     margin-bottom: 50px;
     p {
@@ -197,17 +190,17 @@
     padding: 0;
   }
   .embed {
-    position: relative; 
-    padding-bottom: 100%; 
-    height: 0; 
-    overflow: hidden; 
-    max-width: 100%; 
+    position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
     iframe, object, embed {
-      position: absolute; 
-      top: 0; 
+      position: absolute;
+      top: 0;
       left: 0;
-      width: 100%; 
-      height: 100%; 
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -266,11 +259,11 @@
   .summary {
     padding: 0;
   }
-  
+
   .facts {
     padding: 40px 0 30px;
   }
-  
+
   .playlist {
     padding: 40px 8% 0;
   }

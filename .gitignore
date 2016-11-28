@@ -17,3 +17,7 @@ config/initializers/secret_token.rb
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+get-pip.py
+latest.dump
+ssh_key.pub
+ssh_key.txt
