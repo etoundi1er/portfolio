@@ -14,9 +14,9 @@
         },
         "android_chrome": {
             "picture_aspect": "no_change",
-            "theme_color": "#ffffff",
+            "theme_color": "#000000",
             "manifest": {
-                "name": "Frank Etoundi",
+                "name": "etoundi.com",
                 "display": "browser",
                 "orientation": "not_set",
                 "on_conflict": "override",
