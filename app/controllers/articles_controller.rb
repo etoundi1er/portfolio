@@ -2,10 +2,11 @@ class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy]
 
     def index
-        @articles = Article.order('id DESC').all
+        @articles = request.authorization ? Article.order('id DESC') : Article.published.order('id DESC')
     end
 
     def show
+        return redirect_to articles_url if @article.draft && request.authorization.nil?
     end
 
     def new
@@ -18,35 +19,24 @@ class ArticlesController < ApplicationController
     def create
         @article = Article.new(article_params)
 
-        respond_to do |format|
-            if @article.save
-                format.html { redirect_to @article, notice: 'Article was successfully created.' }
-                format.json { render :show, status: :created, location: @article }
-            else
-                format.html { render :new }
-                format.json { render json: @article.errors, status: :unprocessable_entity }
-            end
+        if @article.save
+            redirect_to @article, notice: 'Article was successfully created.'
+        else
+            render :new
         end
     end
 
     def update
-        respond_to do |format|
-            if @article.update(article_params)
-                format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-                format.json { render :show, status: :ok, location: @article }
-            else
-                format.html { render :edit }
-                format.json { render json: @article.errors, status: :unprocessable_entity }
-            end
+        if @article.update(article_params)
+            redirect_to @article, notice: 'Article was successfully updated.'
+        else
+            render :edit
         end
     end
 
     def destroy
         @article.destroy
-        respond_to do |format|
-            format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-            format.json { head :no_content }
-        end
+        redirect_to articles_url, notice: 'Article was successfully destroyed.'
     end
 
     private
@@ -56,6 +46,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-        params.require(:article).permit(:title, :content, :excerpt, :aside, :image, :description, :keywords)
+        params.require(:article).permit(:title, :content, :slug, :excerpt, :aside, :image, :description, :keywords, :category_id, :draft, :published_on)
     end
 end

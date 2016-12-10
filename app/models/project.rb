@@ -1,4 +1,9 @@
 class Project < ActiveRecord::Base
+    extend FriendlyId
+    friendly_id :title, use: [:slugged, :finders, :history]
+    belongs_to :category
+    validates :slug, :title, presence: true, uniqueness: true
+
     has_attached_file :image,
                       styles: { large: '900x900>', medium: '300x300>', thumb: '100x100>' },
                       default_url: ActionController::Base.helpers.image_path('missing.gif')
@@ -7,15 +12,13 @@ class Project < ActiveRecord::Base
 
     has_attached_file :file
     do_not_validate_attachment_file_type :file
-    validates :slug, :title, presence: true
+
+    def self.published
+        where(draft: false)
+    end
 
     def s3_expiry
         Time.zone.now.beginning_of_day.since 2.years
-    end
-
-    # Pretty URL as explained http://blog.teamtreehouse.com/creating-vanity-urls-in-rails
-    def to_param
-        slug
     end
 
     def next_item

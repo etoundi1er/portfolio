@@ -1,14 +1,14 @@
 <div class="projects-header">
  <h2>
-   "Getting something done is like digging a well. You can dig a well seventy feet deep, 
+   "Getting something done is like digging a well. You can dig a well seventy feet deep,
    but if you don’t hit water it’s just an abandoned well."
  </h2>
  <cite>Mencius, by 孟子</cite>
 </div>
 
 <% if logged_in? %>
-  <div style="margin-bottom: 20px">
-    <%= link_to 'Create Project', new_project_path %>
+  <div class="admin-actions" style="margin-bottom: 20px">
+    <%= link_to 'New Project', new_project_path %> | <%= link_to 'New Category', new_category_path %>
   </div>
 <% end %>
 
@@ -22,12 +22,15 @@
       </div>
       <div class="project-content-container">
           <div class="projects-description">
-              <span class="thumbnail-title"><%= project.title %></span> 
+              <span class="thumbnail-title"><%= project.title %></span>
               <span class="thumbnail-description"><%= project.description %></span>
               <%= link_to 'VIEW PROJECT', project, class: 'button' %>
               <% if logged_in? %>
-                <p><%= link_to 'Edit', edit_project_path(project) %> |  
-                <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                <p class="admin-actions">
+                  <%= link_to 'Edit', edit_project_path(project) %> |
+                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+                  <%= project.draft ? 'Draft' : 'Published' %>
+                </p>
               <% end %>
           </div>
       </div>

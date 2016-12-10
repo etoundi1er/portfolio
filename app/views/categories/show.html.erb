@@ -1,0 +1,26 @@
+<% title @category.title %>
+<% meta_tag :description, @category.description %>
+<% meta_tag :keywords, @category.description.to_s.split(',') %>
+
+<div class="project-desc">
+    <h1><%= @category.title %> <span class="badge"><%= @category.articles.count + @category.projects.count %></span></h1>
+    <% if logged_in? %>
+        <p class="admin-actions"><%= link_to 'Edit', edit_category_path(@category) %> |
+        <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'Add', new_category_path %> |
+        <%= link_to 'Index', categories_path %> </p>
+    <% end %>
+</div>
+
+<div class="articles-list">
+    <% @category.objects.each do |object| %>
+    <article class="article-tile">
+        <div class="article-description">
+            <p class="published_on"><%= format_date object.published_on %></p>
+            <h2><%= link_to object.title, @category.article?(object) ? article_path(object) : project_path(object) %></h2>
+            <p class="article-excerpt"><%= object.description %></p>
+            <p class="article-excerpt"><%= link_to ' ⟶ Read', object %></p>
+        </div>
+    </article>
+    <% end %>
+</div>

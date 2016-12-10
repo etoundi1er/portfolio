@@ -1,0 +1,20 @@
+<% if logged_in? %>
+    <div class="admin-actions" style="margin-bottom: 20px">
+        <%= link_to 'New Category', new_category_path %>
+    </div>
+<% end %>
+
+<div class="articles-list">
+    <% @categories.each do |category| %>
+    <article class="article-tile">
+        <div class="article-description">
+            <h2>
+                <%= link_to category.title, category %>
+                <% if logged_in? %>
+                <span class="admin-actions"><%= link_to 'Edit', edit_category_path(category) %> | <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                <% end %>
+            </h2>
+        </div>
+    </article>
+    <% end %>
+</div>

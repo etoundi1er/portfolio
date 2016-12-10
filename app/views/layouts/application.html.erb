@@ -13,6 +13,7 @@
         content='<%= yield_meta_tag(:keywords, 'ruby,rails, frank etoundi, etoundi, frank, franck, designer,freelance, information architecture, fullstack developer, fullstack designer, front end,front-end, css, css3, html5, html developer, ruby on rails, rails developer, freelancer, ux, ui, user experience, user interface, graphic designer, graphic design, developer, web, app, application, publishing, media, graphic, illustration, print, printing, coventry, munich, munchen, muenchen, germany, deutschland, bavaria, united kingdom, UK, cameroon, cameroun, start-up, cartoons, illustrator') %>' />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <%= yield :meta %>
   <%= render 'favicon' %>
   <title>
     <%= if content_for?(:title) then yield(:title) + ' | ' end %>

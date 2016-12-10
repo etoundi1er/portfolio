@@ -1,6 +1,6 @@
 <% if logged_in? %>
-  <div style="margin-bottom: 20px">
-    <%= link_to 'New Article', new_article_path %>
+  <div class="admin-actions" style="margin-bottom: 20px">
+    <%= link_to 'New Article', new_article_path %> | <%= link_to 'New Category', new_category_path %>
   </div>
 <% end %>
 
@@ -8,7 +8,7 @@
     <% @articles.each do |article| %>
     <article class="article-tile">
         <div class="article-description">
-            <p class="published_on"><%= article.updated_at.strftime('%b %d, %Y') %></p>
+            <p class="published_on"><%= format_date article.published_on %></p>
 
             <% if article.aside == true %>
             <h2><%= article.title %></h2>
@@ -22,7 +22,11 @@
             <% end %>
 
             <% if logged_in? %>
-            <p><%= link_to 'Edit', edit_article_path(article) %> | <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            <p class="admin-actions">
+                <%= link_to 'Edit', edit_article_path(article) %> |
+                <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %> |
+                <%= article.draft ? 'Draft' : 'Published' %>
+            </p>
             <% end %>
         </div>
     </article>

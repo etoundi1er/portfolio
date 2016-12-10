@@ -1,20 +1,40 @@
 <% # Meta information for the <head> section %>
 <% title @project.title %>
 <% meta_tag :description, @project.description %>
+<% content_for :meta do %>
+    <%= auto_discovery_link_tag :rss, project_url(format: :atom) %>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<%= @project.title %>">
+    <meta property="og:url" content="<%= project_url(@project) %>">
+    <meta property="og:description" content="<%= @project.description %>">
+    <meta property="article:published_time" content="<%= @project.published_on.to_time.iso8601 if @project.published_on %>">
+    <meta property="article:modified_time" content="<%= @project.updated_at.to_time.iso8601 %>">
+    <meta property="article:author" content="Frank Etoundi">
+    <meta property="og:site_name" content="etoundi.com">
+    <meta property="og:image" content="<%= @project.image.url if @project.image.url %>">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@etoundi_1er">
+    <meta name="twitter:creator" content="@etoundi_1er">
+    <meta name="twitter:title" content="<%= @project.title %>">
+    <meta name="twitter:description" content="<%= @project.description %>">
+<% end %>
 
 <div class="project-desc">
     <h1><%= @project.title %></h1>
     <hr class="blue">
     <h2><%= @project.description %></h2>
     <p>
-      <span class="trigger-category"><%= @project.category %></span>
-      <span class="trigger-location"><%= @project.period %></span>
+      <span class="trigger-category"><%= link_to @project.category.try(:title), category_path(@project.category) if @project.category %></span>
+      <span class="trigger-location"><%= @project.location %></span>
     </p>
     <% if logged_in? %>
-      <p><%= link_to 'Edit', edit_project_path(@project) %> |  
-      <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> | 
-      <%= link_to 'Add Projects', new_project_path %> | 
-      <%= link_to 'View all', projects_path %> </p>
+      <p class="admin-actions">
+        <%= link_to 'Edit', edit_project_path(@project) %> |
+        <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'Add', new_project_path %> |
+        <%= link_to 'Index', projects_path %> |
+        <%= @project.draft ? 'Draft' : 'Published' %>
+      </p>
     <% end %>
 </div>
 

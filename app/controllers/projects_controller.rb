@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
-    before_action :find_project, only: [:show, :edit, :update, :destroy]
+    before_action :set_project, only: [:show, :edit, :update, :destroy]
 
     def index
-        @projects = Project.order('id DESC').all
+        @projects = !request.authorization.nil? ? Project.order('id DESC') : Project.published.order('id DESC')
     end
 
     def show
@@ -18,40 +18,33 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
 
-        respond_to do |format|
-            if @project.save
-                format.html { redirect_to @project, notice: 'Project was successfully created.' }
-            else
-                format.html { render :new }
-            end
+        if @project.save
+            redirect_to @project, notice: 'Project was successfully created.'
+        else
+            render :new
         end
     end
 
     def update
-        respond_to do |format|
-            if @project.update(project_params)
-                format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-            else
-                format.html { render :edit }
-            end
+        if @project.update(project_params)
+            redirect_to @project, notice: 'Project was successfully updated.'
+        else
+            render :edit
         end
     end
 
     def destroy
         @project.destroy
-        respond_to do |format|
-            format.html { redirect_to projects_path, notice: 'Project was successfully destroyed.' }
-        end
+        redirect_to projects_path, notice: 'Project was successfully destroyed.'
     end
 
     private
 
-    def find_project
-        # @project = Project.find(params[:id])
-        @project = Project.find_by_slug(params[:id])
+    def set_project
+        @project = Project.find(params[:id])
     end
 
     def project_params
-        params.require(:project).permit(:title, :content, :description, :image, :slug, :category, :period)
+        params.require(:project).permit(:title, :content, :description, :image, :slug, :category_id, :location, :published_on, :draft)
     end
 end

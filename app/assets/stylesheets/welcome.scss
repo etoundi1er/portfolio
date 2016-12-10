@@ -19,7 +19,7 @@
     .name {
       @include sans-serif;
       font-weight: normal;
-      font-size: 200%;
+      font-size: 150%;
     }
     a {
       color: inherit;
@@ -97,7 +97,7 @@
   .site-tagline {
     margin-bottom: 30px;
     p {
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 }
@@ -108,7 +108,7 @@
   .site-tagline {
     margin-bottom: 50px;
     p {
-      font-size: 30px;
+      font-size: 25px;
       max-width: 80%;
     }
   }

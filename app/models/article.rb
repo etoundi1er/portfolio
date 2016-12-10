@@ -1,4 +1,9 @@
 class Article < ActiveRecord::Base
+    extend FriendlyId
+    friendly_id :title, use: [:slugged, :finders, :history]
+    belongs_to :category
+    validates :slug, :title, presence: true, uniqueness: true
+
     if Rails.env.development?
         has_attached_file :image,
                           styles: { large: '900x900>', medium: '300x300>', thumb: '100x100>' },
@@ -14,12 +19,12 @@ class Article < ActiveRecord::Base
         validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
     end
 
-    def s3_expiry
-        Time.zone.now.beginning_of_day.since 2.years
+    def self.published
+        where(draft: false)
     end
 
-    def to_param
-        '#{id}-#{title.parameterize}'
+    def s3_expiry
+        Time.zone.now.beginning_of_day.since 2.years
     end
 
     def next_item

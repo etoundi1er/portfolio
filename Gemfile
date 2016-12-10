@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'aws-sdk'
 gem 'turbolinks_transitions'
+gem 'friendly_id', '~> 5.1.0'
 
 group :doc do
     gem 'sdoc', '~> 0.4.0'

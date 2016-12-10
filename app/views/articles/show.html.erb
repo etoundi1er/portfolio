@@ -2,21 +2,40 @@
 <% title @article.title %>
 <% meta_tag :description, @article.description %>
 <% meta_tag :keywords, @article.keywords %>
+<% content_for :meta do %>
+    <%= auto_discovery_link_tag :rss, article_url(format: :atom) %>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<%= @article.title %>">
+    <meta property="og:url" content="<%= article_url(@article) %>">
+    <meta property="og:description" content="<%= @article.description %>">
+    <meta property="article:published_time" content="<%= @article.published_on.to_time.iso8601 if @article.published_on %>">
+    <meta property="article:modified_time" content="<%= @article.updated_at.to_time.iso8601 %>">
+    <meta property="article:author" content="Frank Etoundi">
+    <meta property="og:site_name" content="etoundi.com">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@etoundi_1er">
+    <meta name="twitter:creator" content="@etoundi_1er">
+    <meta name="twitter:title" content="<%= @article.title %>">
+    <meta name="twitter:description" content="<%= @article.description %>">
+<% end %>
 
 <div class="project-desc">
     <h1><%= @article.title %></h1>
     <hr class="blue">
     <br>
-    <p>Last updated on <%= @article.updated_at.strftime('%b %d, %Y') %></p>
+    <p>Published on <%= format_date @article.published_on %> - Last updated on <%= format_date @article.updated_at %></p>
     <p>
         <a href="#share" class="trigger-share" onclick='return anchorJump(this.href)'>share</a>
         <a href="#disqus_thread" class="trigger-comments" onclick='return anchorJump(this.href)'>comments</a>
     </p>
     <% if logged_in? %>
-        <p><%= link_to 'Edit', edit_article_path(@article) %> |
-        <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> |
-        <%= link_to 'Add Projects', new_article_path %> |
-        <%= link_to 'View all', articles_path %> </p>
+        <p class="admin-actions">
+            <%= link_to 'Edit', edit_article_path(@article) %> |
+            <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> |
+            <%= link_to 'Add Projects', new_article_path %> |
+            <%= link_to 'View all', articles_path %> |
+            <%= @article.draft ? 'Draft' : 'Published' %>
+            </p>
     <% end %>
 </div>
 
