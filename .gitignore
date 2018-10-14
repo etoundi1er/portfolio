@@ -21,3 +21,4 @@ get-pip.py
 latest.dump
 ssh_key.pub
 ssh_key.txt
+.DS_Store
